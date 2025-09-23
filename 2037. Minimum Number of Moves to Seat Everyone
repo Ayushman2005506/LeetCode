@@ -1,0 +1,36 @@
+class Solution {
+public:
+    void bubbleSort(vector<int>& arr){
+            int n=arr.size();
+            for(int i=0;i<n;i++){
+                for(int j=0;j<n-i-1;j++){
+                    if(arr[j]>arr[j+1]){
+                        swap(arr[j],arr[j+1]);
+                    }
+                }
+            }
+        }
+    int minMovesToSeat(vector<int>& seats, vector<int>& students) {
+        bubbleSort(seats);
+        bubbleSort(students);
+
+        int count=0;
+        
+        for(int i=0;i<seats.size();i++){
+            if(students[i]<seats[i]){
+                while(students[i]<seats[i]){
+                    students[i]++;
+                    count++;
+                }
+            }
+            else{
+                while(students[i]>seats[i]){
+                    students[i]--;
+                    count++;
+                }
+            }
+        }
+        return count;
+
+    }
+};
