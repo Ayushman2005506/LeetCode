@@ -1,0 +1,44 @@
+class Solution {
+public:
+    double minimumAverage(vector<int>& nums) {
+        vector<double> averages;
+        vector<int> temp=nums; 
+        int iterations=temp.size()/2;
+
+        for(int k=0; k<iterations; k++) {
+            int minElement=temp[0];
+            int maxElement=temp[0];
+            int minIndex=0;
+            int maxIndex=0;
+            for(int i=0; i<temp.size();i++) {
+                if(temp[i] < minElement) {
+                    minElement = temp[i];
+                    minIndex = i;
+                }
+                if(temp[i]>maxElement) {
+                    maxElement=temp[i];
+                    maxIndex=i;
+                }
+            }
+  
+            if(maxIndex>minIndex) {
+                temp.erase(temp.begin()+maxIndex);
+                temp.erase(temp.begin()+minIndex);
+            } else {
+                temp.erase(temp.begin()+minIndex);
+                temp.erase(temp.begin()+maxIndex);
+            }
+
+            double average=(minElement+maxElement)/2.0; 
+            averages.push_back(average);
+        }
+
+        double minAverage=averages[0];
+        for(int i=0; i<averages.size(); i++) {
+            if(averages[i]<minAverage) {
+                minAverage=averages[i];
+            }
+        }
+        return minAverage;
+    }
+};
