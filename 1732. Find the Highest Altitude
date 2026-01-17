@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int largestAltitude(vector<int>& gain) {
+        vector<int>answer={0};
+        for(int i=0;i<gain.size();i++){
+            answer.push_back(answer[i]+gain[i]);
+        }
+        int max=answer[0];
+        for(int i=0;i<answer.size();i++){
+            if(answer[i]>max){
+                max=answer[i];
+            }
+        }
+        return max;
+    }
+};
