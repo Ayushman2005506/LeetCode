@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int addedInteger(vector<int>& nums1, vector<int>& nums2) {
+        int a=nums1.size();
+        for(int i=0;i<a-1;i++){
+            for(int j=0;j<a-i-1;j++){
+                if(nums1[j]>nums1[j+1]){
+                    swap(nums1[j],nums1[j+1]);
+                }
+            }
+        }
+        int b=nums2.size();
+        for(int i=0;i<b-1;i++){
+            for(int j=0;j<b-i-1;j++){
+                if(nums2[j]>nums2[j+1]){
+                    swap(nums2[j],nums2[j+1]);
+                }
+            }
+        }
+
+        int c=nums2[0]-nums1[0];
+        return c;
+
+    }
+};
