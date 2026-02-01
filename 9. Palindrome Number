@@ -1,0 +1,26 @@
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        vector<int> ans;
+        long long original=x;
+        long long temp=x;
+        if(temp<0){
+            return false;
+        }
+        while(temp!=0){
+            long long last=temp%10;
+            ans.push_back(last);
+            temp=temp/10;
+        }
+        long long reversed=0;
+        for(int i=0;i<ans.size();i++){
+            reversed=reversed*10+ans[i];
+        }
+        if(reversed==original){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+};
