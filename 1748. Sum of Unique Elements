@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int sumOfUnique(vector<int>& nums) {
+        unordered_map<int,int> answer;
+        for(int i=0;i<nums.size();i++){
+            answer[nums[i]]++;
+        }
+        int sum=0;
+        for(auto& x:answer){
+            if(x.second==1){
+                int ans=x.first;
+                sum+=ans;
+            }
+        }
+        return sum;
+    }
+};
