@@ -1,0 +1,40 @@
+class Solution {
+public:
+    string reverseByType(string s) {
+        vector<int> letter;
+        vector<int> special;
+        vector<int> letter1;
+        vector<int> special1;
+        
+        for(char c:s){
+            if(c >= 'a' && c <= 'z'){
+                letter.push_back(c);
+            }
+            else{
+                special.push_back(c);
+            }
+        }
+        for(int i = letter.size() - 1; i >= 0; --i){
+            letter1.push_back(letter[i]);
+        }
+        for(int i = special.size() - 1; i >= 0; --i){
+            special1.push_back(special[i]);
+        }
+
+        string result=s;
+        int lIndex=0;
+        int sIndex=0;
+        for(int i=0;i<s.length();i++){
+            if(s[i] >= 'a' && s[i] <= 'z'){
+                result[i]=letter1[lIndex];
+                lIndex++;
+            }
+            else{
+                result[i]=special1[sIndex];
+                sIndex++;
+            }
+        }
+        return result;
+        
+    }
+};
