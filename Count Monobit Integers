@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int countMonobit(int n) {
+        int count=0;
+        for(int i=0;i<=n;i++){
+            if(i==0){
+                count++;
+                continue;
+            }
+            bitset<32> bit(i);
+            string binary=bit.to_string();
+            bool mono=true;
+            size_t firstOne = binary.find('1');
+            binary = binary.substr(firstOne); 
+            for(int j=0;j<binary.length()-1;j++){
+                if(binary[j]!=binary[j+1]){
+                    mono=false;
+                    break;
+                }
+            }
+            if(mono){
+                count++;
+            }
+        }
+        return count;
+    }
+};
