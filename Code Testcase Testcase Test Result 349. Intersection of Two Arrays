@@ -1,0 +1,20 @@
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        vector<int> common;
+        for(int i=0;i<nums1.size();i++){
+            for(int j=0;j<nums2.size();j++){
+                if(nums1[i]==nums2[j]){
+                    common.push_back(nums1[i]);
+                    break;
+                }
+            }
+        }
+        set<int> ans;
+        for(int i=0;i<common.size();i++){
+            ans.insert(common[i]);
+        }
+        vector<int> s(ans.begin(), ans.end());
+        return s;
+    }
+};
