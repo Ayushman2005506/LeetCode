@@ -1,0 +1,27 @@
+class Solution {
+public:
+    vector<int> findingUsersActiveMinutes(vector<vector<int>>& logs, int k) {
+        unordered_map<int,unordered_set<int>> freq;
+        for(int i=0;i<logs.size();i++){
+            int id=logs[i][0];
+            int time=logs[i][1];
+            freq[id].insert(time);
+        }
+        vector<int> seconds;
+        for(auto&[id,time]:freq){
+            int num=time.size();
+            seconds.push_back(num);
+        }
+        unordered_map<int,int>freq1;
+        for(int i=0;i<seconds.size();i++){
+            freq1[seconds[i]]++;
+        }
+        vector<int> answer(k,0);
+        for(int i=0;i<k;i++){
+            int uam=i+1; 
+            answer[i]=freq1[uam]; 
+        }
+
+        return answer;
+    }
+};
