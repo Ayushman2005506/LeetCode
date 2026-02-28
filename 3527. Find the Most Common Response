@@ -1,0 +1,28 @@
+class Solution {
+public:
+    string findCommonResponse(vector<vector<string>>& responses) {
+        vector<unordered_set<string>> s;
+        unordered_map<string,int>freq;
+        for(int i=0;i<responses.size();i++){
+            unordered_set<string>temp;
+            for(int j=0;j<responses[i].size();j++){
+                temp.insert(responses[i][j]);
+            }
+            s.push_back(temp);
+        }
+        for(int i=0;i<s.size();i++){
+            for(const string& word:s[i]){  
+                freq[word]++;
+            }
+        }
+        int max=0;
+        string common;
+        for(auto x:freq){
+            if(x.second>max || (x.second==max && x.first<common)){
+                max=x.second;
+                common=x.first;
+            }
+        }
+        return common;
+    }
+};
