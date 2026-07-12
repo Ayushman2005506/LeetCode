@@ -1,0 +1,43 @@
+class Solution {
+public:
+    int minimumDeletions(vector<int>& nums) {
+        int lowest=0;
+        int highest=0;
+        int high=nums[0];
+        int low=nums[0];
+        int ans=0;
+        int n=nums.size();
+        if(n==1){
+            return 1;
+        }
+        for(int i=0;i<nums.size();i++){
+            if(nums[i]>high){
+                high=nums[i];
+                highest=i;
+            }
+            if(nums[i]<low){
+                low=nums[i];
+                lowest=i;
+            }
+        }
+        if(highest>lowest){
+            ans=highest+1;
+        }
+        else{
+            ans=lowest+1;
+        }
+        if(highest<lowest){
+            ans=min(ans,n-highest);
+        }
+        else{
+            ans=min(ans,n-lowest);
+        }
+            int a=highest+1;
+            int b=n-lowest;
+            ans=min(ans,a+b);
+            int c=lowest+1;
+            int d=n-highest;
+            ans=min(ans,c+d);
+        return ans;
+    }
+};
