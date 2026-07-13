@@ -1,0 +1,21 @@
+class Solution {
+public:
+    string stringHash(string s, int k) {
+        string ans="";
+        int n=s.size();
+        int a=n/k;
+        for(int i=0;i<a;i++){
+            string word="";
+            for(int j=i*k;j<i*k+k;j++){
+                word+=s[j];
+            }
+            int count=0;
+            for(int c=0;c<word.size();c++){
+                count+=word[c]-'a';
+            }
+            count=count%26;
+            ans+=count+'a';
+        }
+        return ans;
+    }
+};
