@@ -1,0 +1,31 @@
+class Solution {
+public:
+    vector<vector<int>> shiftGrid(vector<vector<int>>& grid, int k) {
+        vector <int>a;
+        vector<int>ans;
+        vector<vector<int>>result;
+        int c=grid[0].size();
+        for(int i=0;i<grid.size();i++){
+            for(int j=0;j<grid[i].size();j++){
+                a.push_back(grid[i][j]);
+            }
+        }
+        int n=a.size();
+        int b=k%n;
+        for(int i=n-b;i<n;i++){
+            ans.push_back(a[i]);
+        }
+        for(int i=0;i<n-b;i++){
+            ans.push_back(a[i]);
+        }
+        int idx=0;
+        for(int i=0;i<grid.size();i++){
+            vector<int>e;
+            for(int j=0;j<c;j++){
+                e.push_back(ans[idx++]);
+            }
+            result.push_back(e);
+        }
+        return result;
+    }
+};
