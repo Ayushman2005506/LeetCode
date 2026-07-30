@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int minOperations(int n) {
+      vector<int>ans;
+      int sum=0;
+      for(int i=0;i<n;i++){
+        int digit=(2*i)+1;
+        sum+=digit;
+        ans.push_back(digit);
+      }  
+      int target=sum/n;
+      int count=0;
+      for(int i=0;i<=n/2-1;i++){
+        count+=(target-ans[i]);
+      }
+      return count;
+    }
+};
