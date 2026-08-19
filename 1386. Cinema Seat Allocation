@@ -1,0 +1,65 @@
+class Solution {
+public:
+    int maxNumberOfFamilies(int n, vector<vector<int>>& reservedSeats) {
+        sort(reservedSeats.begin(), reservedSeats.end());
+
+        int ans = 0;
+        int i = 0;
+
+        while (i < reservedSeats.size()) {
+            int row = reservedSeats[i][0];
+
+            bool left = true;   // 2,3,4,5
+            bool middle = true; // 4,5,6,7
+            bool right = true;  // 6,7,8,9
+
+            // Process all reservations in this row
+            while (i < reservedSeats.size() && reservedSeats[i][0] == row) {
+                int seat = reservedSeats[i][1];
+
+                if (seat >= 2 && seat <= 5)
+                    left = false;
+
+                if (seat >= 4 && seat <= 7)
+                    middle = false;
+
+                if (seat >= 6 && seat <= 9)
+                    right = false;
+
+                i++;
+            }
+
+            int groups = 0;
+
+            if (left) groups++;
+            if (middle) groups++;
+            if (right) groups++;
+
+            // Middle overlaps with both left and right.
+            // If middle is available, it can be used as one group.
+            // If left and right are both available, they can both be used.
+            if (left && right)
+                groups = 2;
+            else if (left || middle || right)
+                groups = 1;
+            else
+                groups = 0;
+
+            ans += groups;
+        }
+
+        // Rows with no reserved seats can fit 2 groups.
+        int reservedRows = 0;
+        for (int i = 0; i < reservedSeats.size(); ) {
+            reservedRows++;
+            int row = reservedSeats[i][0];
+
+            while (i < reservedSeats.size() && reservedSeats[i][0] == row)
+                i++;
+        }
+
+        ans += (n - reservedRows) * 2;
+
+        return ans;
+    }
+};
