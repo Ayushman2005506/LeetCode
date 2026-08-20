@@ -1,0 +1,49 @@
+class Solution {
+public:
+    bool parseBoolExpr(string expression) {
+        stack<char>s;
+        for(char c:expression){
+            if(c=='t'||c=='f'||c=='('||c=='!'||c=='&'||c=='|'){
+                s.push(c);
+            }
+            else if(c==')'){
+                string temp="";
+                while(s.top()!='!'&&s.top()!='&'&&s.top()!='|'){
+                    temp+=s.top();
+                    s.pop();
+                }
+                char ans;
+                if(s.top()=='!'){
+                    if(temp[0]=='t'){
+                        ans='f';
+                    }
+                    else{
+                        ans='t';
+                    }
+                }
+                else if(s.top()=='&'){
+                    if(temp.find('f')!=string::npos){
+                        ans='f';
+                    }
+                    else{
+                        ans='t';
+                    }
+                }
+                else{
+                    if(temp.find('t')!=string::npos){
+                        ans='t';
+                    }
+                    else{
+                        ans='f';
+                    }
+                }
+                s.pop();
+                s.push(ans);
+            }
+        }
+        if(s.top()=='t'){
+            return true;
+        }
+        return false;
+    }
+};
