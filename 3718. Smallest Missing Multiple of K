@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int missingMultiple(vector<int>& nums, int k) {
+        unordered_set<int>s;
+        int large=0;
+        for(int i=0;i<nums.size();i++){
+            s.insert(nums[i]);
+            large=max(large,nums[i]);
+        }
+        int x=k;
+        while(true){
+            if(s.find(x)==s.end()){
+                return x;
+            }
+            x+=k;
+        }
+        return k;
+    }
+};
