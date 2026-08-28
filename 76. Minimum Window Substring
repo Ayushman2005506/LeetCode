@@ -1,0 +1,37 @@
+class Solution {
+public:
+    string minWindow(string s, string t) {
+        unordered_map<char,int>need;
+        for(int i=0;i<t.size();i++){
+            need[t[i]]++;
+        }
+        unordered_map<char,int>current;
+        int left=0;
+        int right=0;
+        int count=0;
+        int len=INT_MAX;
+        int start=0;
+        while(right<s.size()){
+            current[s[right]]++;
+            if(current[s[right]]<=need[s[right]]){
+                count++;
+            }
+            while(count==t.size()){
+                if(right-left+1<len){
+                    len=right-left+1;
+                    start=left;
+                }
+                current[s[left]]--;
+                if(current[s[left]]<need[s[left]]){
+                    count--;
+                }
+                left++;
+            }
+            right++;
+        }
+        if(len==INT_MAX){
+            return "";
+        }
+        return s.substr(start,len);
+    }
+};
