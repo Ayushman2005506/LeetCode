@@ -1,0 +1,21 @@
+class Solution {
+public:
+    ListNode* mergeNodes(ListNode* head) {
+        ListNode* temp=head->next;
+        ListNode* temp1=head;
+        int sum=0;
+        while(temp!=nullptr){
+            if(temp->val==0){
+                ListNode* newNode=new ListNode(sum);
+                temp1->next=newNode;
+                temp1=newNode;
+                sum=0;
+            }
+            else{
+            sum+=temp->val;
+            }
+            temp=temp->next;
+        }
+        return head->next;;
+    }
+};
