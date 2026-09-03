@@ -1,0 +1,42 @@
+class Solution {
+public:
+    bool uniformArray(vector<int>& nums1) {
+        int min = INT_MAX;
+        int minOdd = INT_MAX;
+
+        for (int i = 0; i < nums1.size(); i++) {
+            if (nums1[i] < min) {
+                min = nums1[i];
+            }
+
+            if (nums1[i] % 2 != 0 && nums1[i] < minOdd) {
+                minOdd = nums1[i];
+            }
+        }
+
+        if (min % 2 == 0) {
+
+            for (int i = 0; i < nums1.size(); i++) {
+
+                if (nums1[i] % 2 != 0) {
+                    if (nums1[i] - minOdd < 1) {
+                        return false;
+                    }
+                }
+            }
+
+        } else {
+
+            for (int i = 0; i < nums1.size(); i++) {
+
+                if (nums1[i] % 2 == 0) {
+                    if (nums1[i] - minOdd < 1) {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        return true;
+    }
+};
