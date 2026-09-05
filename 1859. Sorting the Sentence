@@ -1,0 +1,30 @@
+class Solution {
+public:
+    string sortSentence(string s) {
+        vector<string>ans;
+        vector<int>a;
+        string word="";
+        for(char c:s){
+            if((c>='a' && c<='z')||(c>='A' && c<='Z')){
+                word+=c;            
+            }
+            else if(c>='0' && c<='9'){
+                ans.push_back(word);
+                a.push_back(c-'0');
+                word="";
+            }
+        }
+        vector<string>result(ans.size());
+        for(int i=0;i<ans.size();i++){
+            result[a[i]-1]=ans[i];
+        }
+        string answer="";
+        for(int i=0;i<result.size();i++){
+            answer+=result[i];
+            if(i !=result.size()-1){
+                answer+=" ";
+            }
+        }
+        return answer;
+    }
+};
