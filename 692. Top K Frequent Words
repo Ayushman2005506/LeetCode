@@ -1,0 +1,25 @@
+class Solution {
+public:
+    vector<string> topKFrequent(vector<string>& words, int k) {
+        map<string,int>freq;
+        for(int i=0;i<words.size();i++){
+            freq[words[i]]++;
+        }
+        vector<pair<string,int>>ans;
+        for(auto x:freq){
+            ans.push_back({x.first,x.second});
+        }
+        for(int i=0;i<ans.size();i++){
+            for(int j=0;j<ans.size()-i-1;j++){
+                if((ans[j].second<ans[j+1].second) || (ans[j].second == ans[j+1].second && ans[j].first > ans[j+1].first)){
+                    swap(ans[j],ans[j+1]);
+                }
+            }
+        }
+        vector<string>result;
+        for(int i=0;i<k;i++){
+            result.push_back(ans[i].first);
+        }
+        return result;
+    }
+};
