@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int ans=0;
+    int sum(TreeNode* root){
+        if(root==nullptr){
+            return 0;
+        }
+        return root->val+sum(root->left)+sum(root->right);
+    }
+    int count(TreeNode* root){
+        if(root==nullptr){
+            return 0;
+        }
+        return 1+count(root->left)+count(root->right);
+    }
+    void check(TreeNode* root){
+        if(root==nullptr){
+            return;
+        }
+        if(sum(root)/count(root)==root->val){
+            ans++;
+        }
+        check(root->left);
+        check(root->right);
+    }
+    int averageOfSubtree(TreeNode* root) {
+        check(root);
+        return ans;
+    }
+};
