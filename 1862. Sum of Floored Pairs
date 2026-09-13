@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int sumOfFlooredPairs(vector<int>& nums) {
+        long long ans=0;
+        unordered_map<int,int>freq;
+        for(int x:nums){
+            freq[x]++;
+        }
+        int maximum=0;
+        for(int i=0;i<nums.size();i++){
+            maximum=max(maximum,nums[i]);
+        }
+        vector<int>prefix(maximum+1,0);
+        for(int i=1;i<=maximum;i++){
+            prefix[i]=prefix[i-1]+freq[i];
+        }
+
+        for(auto x:freq){
+            for(int j=x.first;j<=maximum;j+=x.first){
+                int left=j;
+                int right=min(j+x.first-1,maximum);
+                int count=prefix[right]-prefix[left-1];
+                ans+= 1LL*(j/x.first)*count*x.second;
+            }
+        }
+        return ans%1000000007;
+    }
+};
