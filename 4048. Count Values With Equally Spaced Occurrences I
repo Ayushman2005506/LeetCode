@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int countSpecialIntegers(vector<int>& nums) {
+        unordered_map<int,int>freq;
+        for(int x:nums){
+            freq[x]++;
+        }
+        unordered_map<int,vector<int>>count;
+        for(int i=0;i<nums.size();i++){
+            count[nums[i]].push_back(i);
+        }
+        int ans=0;
+        for(auto x:freq){
+            if(x.second==3){
+                if(count[x.first][1]-count[x.first][0]==count[x.first][2]-count[x.first][1]){
+                    ans++;
+                }
+            }
+        }
+        return ans;
+    }
+};
