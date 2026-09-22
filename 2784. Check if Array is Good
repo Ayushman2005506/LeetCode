@@ -1,0 +1,30 @@
+class Solution {
+public:
+    bool isGood(vector<int>& nums) {
+        int maximum=0;
+        for(int i=0;i<nums.size();i++){
+            if(nums[i]>maximum){
+                maximum=nums[i];
+            }
+        }
+        if(nums.size()!=maximum+1){
+            return false;
+        }
+        unordered_map<int,int>freq;
+        for(int x:nums){
+            freq[x]++;
+        }
+        if(freq[maximum]!=2){
+            return false;
+        }
+        for(auto x:freq){
+            if(x.first==maximum){
+                continue;
+            }
+            if(x.second!=1){
+                return false;
+            }
+        }
+        return true;
+    }
+};
