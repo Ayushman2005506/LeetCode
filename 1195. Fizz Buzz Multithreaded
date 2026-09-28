@@ -1,0 +1,75 @@
+class FizzBuzz {
+private:
+    int n;
+
+public:
+    FizzBuzz(int n) {
+        this->n = n;
+        a=1;
+    }
+    int a;
+    mutex mtx;
+    // printFizz() outputs "fizz".
+    void fizz(function<void()> printFizz) {
+        while(true){
+            mtx.lock();
+            if(a>n){
+                mtx.unlock();
+                return;
+            }
+            if(a%3==0 && a%5!=0){
+                printFizz();
+                a++;
+            }
+            mtx.unlock();
+        }
+    }
+
+    // printBuzz() outputs "buzz".
+    void buzz(function<void()> printBuzz) {
+        while(true){
+            mtx.lock();
+            if(a>n){
+                mtx.unlock();
+                return;
+            }
+            if(a%5==0 && a%3!=0){
+                printBuzz();
+                a++;
+            }
+            mtx.unlock();
+        }
+    }
+
+    // printFizzBuzz() outputs "fizzbuzz".
+	void fizzbuzz(function<void()> printFizzBuzz) {
+        while(true) {
+            mtx.lock();
+            if(a>n){
+                mtx.unlock();
+                return;
+            }
+            if(a%3==0 && a%5==0){
+                printFizzBuzz();
+                a++;
+            }
+            mtx.unlock();
+        }
+    }
+
+    // printNumber(x) outputs "x", where x is an integer.
+    void number(function<void(int)> printNumber) {
+        while(true){
+            mtx.lock();
+            if(a>n){
+                mtx.unlock();
+                return;
+            }
+            if (a%3!=0 && a%5!=0){
+                printNumber(a);
+                a++;
+            }
+            mtx.unlock();
+        }
+    }
+};
