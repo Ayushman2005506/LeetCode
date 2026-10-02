@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int numberOfSpecialChars(string word) {
+        set<char>s1;
+        set<char>s2;
+        int count=0;
+        for(char c:word){
+            if(islower(c)){
+                s1.insert(c);
+            }
+            else{
+                s2.insert(tolower(c));
+            }
+        }
+        for(char c:s1){
+            if(s2.find(c)!=s2.end()){
+                count++;
+            }
+        }
+        return count;
+    }
+};
