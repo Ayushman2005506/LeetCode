@@ -1,0 +1,25 @@
+class Solution {
+public:
+    bool detectCapitalUse(string word) {
+        int lower=0;
+        int capital=0;
+        for(char c:word){
+            if(c>='a' && c<='z'){
+                lower++;
+            }
+            else{
+                capital++;
+            }
+        }
+        if(lower==0 || capital==0){
+            return true;
+        }
+        if(capital==1){
+            char c=word[0];
+            if(isupper(c)){
+                return true;
+            }
+        }
+        return false;
+    }
+};
