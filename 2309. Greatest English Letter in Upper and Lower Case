@@ -1,0 +1,18 @@
+class Solution {
+public:
+    string greatestLetter(string s) {
+        set<char>a;
+        for(char c:s){
+            a.insert(c);
+        }
+        for(char c='Z';c>='A';c--){
+            char l=tolower(c);
+            if(a.find(c)!=a.end() && a.find(l)!=a.end()){
+                string ans="";
+                ans+=c;
+                return ans;
+            }
+        }
+        return "";
+    }
+};
