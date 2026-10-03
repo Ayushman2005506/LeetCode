@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int smallestRepunitDivByK(int k) {
+        if(k%2==0){
+            return -1;
+        }
+        set<int>s;
+        int remainder=0;
+        int length=0;
+        while(true){
+            remainder=(remainder*10+1)%k;
+            length++;
+            if(s.find(remainder)!=s.end()){
+                return -1;
+            }
+            s.insert(remainder);
+            if(remainder==0){
+                return length;
+            }
+        }
+    }
+};
