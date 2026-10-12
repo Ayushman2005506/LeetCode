@@ -1,0 +1,26 @@
+class Solution {
+public:
+    vector<int> maxPrimes(int n, int s) {
+        vector<int>ans;
+        int sum=0;
+        vector<bool>prime(n+1,true);
+        prime[0]=false;
+        prime[1]=false;
+        for(int p=2;p*p<=n;p++){
+            if(prime[p]==true){
+                for(int i=p*p;i<=n;i+=p){
+                    prime[i]=false;
+                }
+            }
+        }
+        for(int p=2;p<=n;p++){
+            if(prime[p]==true){
+                if(sum+p<=s){
+                    sum+=p;
+                    ans.push_back(p);
+                }
+            }
+        }
+        return ans;
+    }
+};
