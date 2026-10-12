@@ -1,0 +1,95 @@
+class BusBooking {
+    vector<bool> bookedA,bookedB,bookedC,bookedD;
+    vector<int> costA,costB,costC,costD;
+    int total=0;
+    int minTime=0;
+    
+public:
+    BusBooking(int n) {
+        bookedA.resize(n, false);
+        bookedB.resize(n, false);
+        bookedC.resize(n, false);
+        bookedD.resize(n, false);
+
+        costA.resize(n, 0);
+        costB.resize(n, 0);
+        costC.resize(n, 0);
+        costD.resize(n, 0);
+    }
+    
+    void toggle(string seat) {
+        char ch=seat[0];
+        int row=stoi(seat.substr(1))-1;
+        if(ch=='B'){
+            if(bookedB[row]==false){
+                bookedB[row]=true;
+                costB[row]=1;
+                total+=1;
+                minTime++;
+            }
+            else{
+                bookedB[row]=false; 
+                total-=costB[row];
+                minTime--;
+            }
+        }
+        if(ch=='C'){
+            if(bookedC[row]==false){
+                bookedC[row]=true;
+                costC[row]=1;
+                total+=1;
+                minTime++;
+            }
+            else{
+                bookedC[row]=false; 
+                total-=costC[row];
+                minTime--;
+            }
+        }
+        if(ch=='A'){
+            if(bookedA[row]==false){
+                if(bookedB[row]==true){
+                    bookedA[row]=true;
+                    costA[row]=3;
+                }
+                else{
+                    bookedA[row]=true;
+                    costA[row]=1;
+                }
+                total+=costA[row];
+                minTime++;
+            }
+            else{
+                bookedA[row]=false;
+                total-=costA[row];
+                minTime--;
+            }
+        }
+        if(ch=='D'){
+            if(bookedD[row]==false){
+                if(bookedC[row]==true){
+                    bookedD[row]=true;
+                    costD[row]=3;
+                }
+                else{
+                    bookedD[row]=true;
+                    costD[row]=1;
+                }
+                total+=costD[row];
+                minTime++;
+            }
+            else{
+                bookedD[row]=false;
+                total-=costD[row];
+                minTime--;
+            }
+        }
+    }
+    
+    int getTotalTime() {
+        return total;
+    }
+    int getMinTime() {
+        return minTime;
+    }
+};
