@@ -1,0 +1,36 @@
+class RideSharingSystem {
+public:
+    vector<int> rider,  driver;
+    
+    RideSharingSystem() {
+    }
+    
+    void addRider(int riderId) {
+        rider.push_back(riderId);
+    }
+    
+    void addDriver(int driverId) {
+        driver.push_back(driverId);
+    }
+    
+    vector<int> matchDriverWithRider() {
+        vector<int> match; 
+        if(driver.size() != 0 && rider.size() != 0){
+            match.push_back(driver[0]); match.push_back(rider[0]);
+            driver.erase(driver.begin()); rider.erase(rider.begin());
+        }
+        else{
+            match.push_back(-1); match.push_back(-1);
+        }
+        return match;
+    }
+    void cancelRider(int riderId) {
+        for(int i=0;i<rider.size();i++){
+            if(rider[i]==riderId){
+                rider.erase(rider.begin()+i);
+                break;
+            }
+        }
+    }
+};
+
