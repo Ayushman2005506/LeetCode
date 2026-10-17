@@ -1,0 +1,22 @@
+class Solution {
+public:
+    bool isUnivalTree(TreeNode* root) {
+        if(root==nullptr){
+            return true;
+        }
+        int a=root->val;
+        if(root->left!=nullptr && root->left->val!=a){
+            return false;
+        }
+        if(root->right!=nullptr && root->right->val!=a){
+            return false;
+        }
+        if(isUnivalTree(root->left)==false){
+            return false;
+        }
+        if(isUnivalTree(root->right)==false){
+            return false;
+        }
+        return true;
+    }
+};
