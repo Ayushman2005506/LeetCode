@@ -1,0 +1,29 @@
+class Solution {
+public:
+    string reformatNumber(string number) {
+        string a="";
+        string ans="";
+        for(char c:number){
+            if(c>='0' && c<='9'){
+                a+=c;
+            }
+        }
+        while(a.size()>4){
+            ans+=a.substr(0,3);
+            ans+='-';
+            a.erase(0,3);
+        }
+        if(a.size()==2 || a.size()==3){
+            ans+=a;
+        }
+        else{
+            ans+=a[0];
+            ans+=a[1];
+            ans+='-';
+            ans+=a[2];
+            ans+=a[3];
+        }
+        return ans;
+    }
+};
+        
