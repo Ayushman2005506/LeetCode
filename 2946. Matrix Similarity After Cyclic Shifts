@@ -1,0 +1,24 @@
+class Solution {
+public:
+    bool areSimilar(vector<vector<int>>& mat, int k) {
+        for(int i=0;i<mat.size();i++){
+            int n=mat[i].size();
+            k=k%n;
+            if(i%2==0){
+                for(int j=0;j<mat[i].size();j++){
+                    if(mat[i][j]!=mat[i][(j+k)%n]){
+                        return false;
+                    }
+                }
+            }
+            else{
+                for(int j=0;j<mat[i].size();j++){
+                    if(mat[i][j]!=mat[i][(j-k+n)%n]){
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+};
