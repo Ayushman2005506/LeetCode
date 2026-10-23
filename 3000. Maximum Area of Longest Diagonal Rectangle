@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int areaOfMaxDiagonal(vector<vector<int>>& dimensions) {
+        int index=0;
+        int diagonal=0;
+        for(int i=0;i<dimensions.size();i++){
+            if((dimensions[i][0]*dimensions[i][0]+dimensions[i][1]*dimensions[i][1])>diagonal){
+                diagonal=dimensions[i][0]*dimensions[i][0]+dimensions[i][1]*dimensions[i][1];
+                index=i;
+            }
+            else if ((dimensions[i][0]*dimensions[i][0]+dimensions[i][1]*dimensions[i][1])==diagonal){
+                if(dimensions[i][0]*dimensions[i][1] > dimensions[index][0]*dimensions[index][1]) {
+                    index=i;
+                }
+            }
+        }
+        return dimensions[index][0]*dimensions[index][1];
+    }
+};
