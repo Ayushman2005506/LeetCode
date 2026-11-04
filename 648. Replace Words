@@ -1,0 +1,66 @@
+struct TrieNode {
+    TrieNode* children[26];
+    bool isEnd;
+
+    TrieNode() {
+        isEnd=false;
+        for(int i=0;i<26;i++) {
+            children[i] = nullptr;
+        }
+    }
+};
+class Solution {
+    TrieNode* root;
+public:
+    string replaceWords(vector<string>& dictionary, string sentence) {
+        root=new TrieNode();
+        for(string word:dictionary){
+            TrieNode* curr=root;
+            for(char c:word){
+                int index=c-'a';
+                if(curr->children[index]==nullptr){
+                    curr->children[index]=new TrieNode();
+                }
+                curr=curr->children[index];
+            }
+            curr->isEnd=true;
+        }
+        string ans="";
+        string word1="";
+        sentence+=' ';
+        for(char c:sentence){
+            if(c==' '){
+                bool found=false;
+                TrieNode* curr=root;
+                string prefix="";
+                for(char a:word1){
+                    int index=a-'a';
+                    if(curr->children[index]==nullptr){
+                        ans+=word1;
+                        found=true;
+                        ans+=' ';
+                        break;
+                    }
+                    curr=curr->children[index];
+                    prefix+=a;
+                    if(curr->isEnd==true){
+                        ans+=prefix;
+                        found=true;
+                        ans+=' ';
+                        break;
+                    }
+                }
+                if(!found){
+                    ans+=word1;
+                    ans+=' ';
+                }
+                word1="";
+            }
+            else{
+                word1+=c;
+            }
+        }
+        ans.pop_back();
+        return ans;
+    }
+};
