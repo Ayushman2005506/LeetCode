@@ -1,0 +1,31 @@
+class Solution {
+public:
+    int minDeletions(string s) {
+        int ans=0;
+        unordered_map<char,int>freq;
+        for(char c:s){
+            freq[c]++;
+        }
+        vector<int>frequency;
+        for(auto x:freq){
+            frequency.push_back(x.second);
+        }
+        sort(frequency.rbegin(),frequency.rend());
+        unordered_set<int>st;
+        for(int i=0;i<frequency.size();i++){
+            if(st.find(frequency[i])==st.end()){
+                st.insert(frequency[i]);
+            }
+            else{
+                while(st.find(frequency[i])!=st.end()){
+                    frequency[i]--;
+                    ans++;
+                }
+                if(frequency[i]!=0){
+                    st.insert(frequency[i]);
+                }
+            }
+        }
+        return ans;
+    }
+};
