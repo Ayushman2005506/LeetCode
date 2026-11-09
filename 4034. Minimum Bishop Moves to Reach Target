@@ -1,0 +1,14 @@
+class Solution {
+public:
+    int minBishopMoves(vector<int>& source, vector<int>& target) {
+        int a=source[0]+source[1];
+        int b=target[0]+target[1];
+        if((a%2==0 && b%2!=0)||(a%2!=0 && b%2==0)){
+            return -1;
+        }
+        else if((source[0]+source[1]==target[0]+target[1])||(source[0]-source[1]==target[0]-target[1])){
+            return 1;
+        }
+        return 2;
+    }
+};
