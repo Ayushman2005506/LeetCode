@@ -1,0 +1,14 @@
+class Solution {
+public:
+    int minRange(int a, int b, int c) {
+        int ans=max(a,max(b,c))-min(a,min(b,c));
+        int range1=max(b+c,max(b,c))-min(b+c,min(b,c));
+        ans=min(ans,range1);
+        int range2=max(a,max(a+c,c))-min(a,min(a+c,c));
+        ans=min(ans,range2);
+        int range3=max(a,max(b,a+b))-min(a,min(b,a+b));
+        ans=min(ans,range3);
+        return ans;
+    }
+};
+        
