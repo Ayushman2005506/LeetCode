@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int ans=0;
+    int dfs(TreeNode* root){
+        if(root==nullptr){
+            return INT_MIN;
+        }
+        int left=dfs(root->left);
+        int right=dfs(root->right);
+        if(root->val>=left && root->val>=right){
+            ans++;
+        }
+        return max(root->val,max(left,right));
+    }
+    int countDominantNodes(TreeNode* root) {
+        ans=0;
+        if(root==nullptr){
+            return 0;
+        }
+        dfs(root);
+        return ans;
+    }
+};
