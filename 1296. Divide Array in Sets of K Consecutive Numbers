@@ -1,0 +1,29 @@
+class Solution {
+public:
+    bool isPossibleDivide(vector<int>& nums, int k) {
+        unordered_map<int,int>freq;
+        int n=nums.size();
+        if(n%k!=0){
+            return false;
+        }
+        sort(nums.begin(),nums.end());
+        for(int i=0;i<n;i++){
+            freq[nums[i]]++;
+        }
+        for(int i=0;i<n;i++){
+            int num=nums[i];
+            if(freq[num]==0){
+                continue;
+            }
+            for(int j=0;j<k;j++){
+                if(freq.count(num+j) && freq[num+j]>0){
+                    freq[num+j]--;
+                }
+                else{
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+};
