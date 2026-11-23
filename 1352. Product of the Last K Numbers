@@ -1,0 +1,23 @@
+class ProductOfNumbers {
+    vector<int>nums={1};
+public:
+    ProductOfNumbers() {
+        
+    }
+    
+    void add(int num) {
+        if(num>0){
+            nums.push_back(nums[nums.size()-1]*num);
+        }
+        else{
+            nums={1};
+        }
+    }
+    
+    int getProduct(int k) {
+        if(k>=nums.size()){
+            return 0;
+        }
+        return nums[nums.size()-1]/nums[nums.size()-1-k];
+    }
+};
