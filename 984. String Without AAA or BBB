@@ -1,0 +1,43 @@
+class Solution {
+public:
+    string strWithout3a3b(int a, int b) {
+        string ans="";
+        int counta=0;
+        int countb=0;
+        int consecutiveA=0;
+        int consecutiveB=0;
+        while(ans.length()<a+b){
+            int rema=a-counta;
+            int remb=b-countb;
+            if(rema>remb){
+                if(counta<a && consecutiveA<2){
+                    ans+='a';
+                    counta++;
+                    consecutiveA++;
+                    consecutiveB=0;
+                }
+                else{
+                    ans+='b';
+                    countb++;
+                    consecutiveB++;
+                    consecutiveA=0;
+                }
+            }
+            else{
+                if(countb<b && consecutiveB<2){
+                    ans+='b';
+                    countb++;
+                    consecutiveB++;
+                    consecutiveA=0;
+                }
+                else{
+                    ans+='a';
+                    counta++;
+                    consecutiveA++;
+                    consecutiveB=0;
+                }
+            }
+        }
+        return ans;
+    }
+};
